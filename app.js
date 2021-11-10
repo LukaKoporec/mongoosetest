@@ -3,7 +3,10 @@ const mongoose = require("mongoose");
 mongoose.connect("mongodb://localhost:27017/fruitsDB");
 
 const fruitSchema = new mongoose.Schema ({
-    name: String,
+    name: {
+        type: String,
+        required: [true, "What is the name of this fruit?"]
+    },
     rating: {
         type: Number,
         min: 1,
@@ -20,7 +23,7 @@ const fruit = new Fruit ({
     review: "Pretty solid as a fruit"
 });
 
-// fruit.save();
+ // fruit.save();
 
 const personSchema = new mongoose.Schema ({
     name: String,
@@ -64,8 +67,24 @@ Fruit.find(function(err, fruits){
         fruits.forEach(function(fruit){
             console.log(fruit.name);
 
-            
-mongoose.connection.close()
+        mongoose.connection.close()
         });
     }
 });
+
+
+//Fruit.updateOne({_id: "618b83c71812aaa26f5c660d"}, {name: "Banana++"}, function(err){
+//    if (err) {
+//        console.log(err);
+//    } else {
+//        console.log("succesfully updated the document.");
+//    }
+//});
+
+// Fruit.deleteOne({ name: "Kiwi"}, function(err){
+//    if(err){
+//        console.log(err);
+//    } else {
+//        console.log("Succesfully deleted the document");
+//    }
+//});
