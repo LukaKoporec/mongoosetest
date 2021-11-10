@@ -31,3 +31,24 @@ const person = new Person ({
 });
 
 // person.save();
+
+
+const kiwi = new Fruit({
+    name: "Kiwi",
+    score: 5,
+    review: "Ehhh"
+});
+
+const banana = new Fruit({
+    name: "Banana",
+    score: 10,
+    review: "The Best Fruit"
+});
+
+Fruit.insertMany([kiwi, banana], function(err){
+    if (err) {
+        console.log(err);
+    } else {
+        console.log("Succesfully saved all the fruits to fruitsDB");
+    }
+});
